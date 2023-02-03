@@ -12,11 +12,11 @@ namespace GraphParser
         public int id { get; set; }
         public string info { get; set; }
         public List<int> adj_v { get; set; }
-        public CVertex(int id, string info="", List<int> adj_v=null)
+        public CVertex(int id)
         {
             this.id = id;
-            this.info = info;
-            this.adj_v = adj_v;
+            this.info = "";
+            this.adj_v = new List<int>();
         }        
     }
     public class CServer
@@ -29,13 +29,23 @@ namespace GraphParser
     {
         public int id { get; set; }
         public int weight { get; set; }
+        public CEdge(int id, int weight)
+        {
+            this.id = id;
+            this.weight = weight;
+        }
     }
     public class CAdjVertex
     {
         public int id { get; set; }
-        public List<CEdge> edges { get; set; }
+        public List<CEdge> edges { get; set; }  
+        public CAdjVertex(int id)
+        {
+            this.id = id;
+            this.edges = new List<CEdge>();
+        }
     }
-     public class Config
+    public class Config
     {
         public List<CVertex> vertexes { get; set; }
         public List<CServer> servers { get; set; }
@@ -45,6 +55,7 @@ namespace GraphParser
             vertexes = new List<CVertex>();
             servers = new List<CServer>();
             adj_list = new List<CAdjVertex>();
+     
         }
     }
     class RedactorVertex
